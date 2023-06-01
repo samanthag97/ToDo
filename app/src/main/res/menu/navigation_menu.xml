@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/homepage"
+        android:title="@string/homepage" />
+
+    <item android:id="@+id/your_list"
+        android:title="@string/your_list" />
+
+    <item android:id="@+id/settings"
+        android:title="@string/settings" />
+
+
+</menu>
