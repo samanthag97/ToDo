@@ -7,4 +7,7 @@
     <string name="close_drawer">Close</string>
     <string name="new_task">New Task</string>
     <string name="save_button">Save</string>
+    <string name="password_login">Password</string>
+    <string name="enter_your_email">\@ Enter e-mail</string>
+    <string name="sign_in">Sign in</string>
 </resources>
