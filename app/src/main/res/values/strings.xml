@@ -1,13 +1,17 @@
 <resources>
     <string name="app_name">To Do</string>
     <string name="homepage">Homepage</string>
-    <string name="settings">Settings</string>
+    <string name="log_out">Log out</string>
     <string name="your_list">Your list</string>
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
     <string name="new_task">New Task</string>
     <string name="save_button">Save</string>
     <string name="password_login">Password</string>
-    <string name="enter_your_email">\@ Enter e-mail</string>
+    <string name="enter_your_email">Enter your e-mail</string>
     <string name="sign_in">Sign in</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up">Sign up</string>
+    <string name="repeat_e_mail">Repeat e-mail</string>
+    <string name="new_user_register_here">New user? Register here!</string>
 </resources>

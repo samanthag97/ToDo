@@ -1,11 +1,14 @@
 package com.example.todo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +21,12 @@ import com.google.android.material.navigation.NavigationView;
 public class ActivityDrawerBase extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public void setContentView(View view) {
@@ -44,13 +53,22 @@ public class ActivityDrawerBase extends AppCompatActivity implements NavigationV
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
+        //Fragment fragment = null;
+
         switch (item.getItemId()){
             //da fare gli altri casi, activity o fragment?
             case R.id.homepage:
                 startActivity(new Intent(ActivityDrawerBase.this, MainActivity.class));
                 overridePendingTransition(0,0);
                 break;
-
+            case R.id.your_list:
+                startActivity(new Intent(this, CustomFragmentActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.log_out:
+                startActivity(new Intent(ActivityDrawerBase.this, LoginActivity.class));
+                overridePendingTransition(0,0);
+                break;
         }
 
         return false;
