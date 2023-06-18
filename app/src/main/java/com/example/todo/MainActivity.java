@@ -16,6 +16,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import com.example.todo.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.AggregateQuery;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,7 +39,7 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
     private List<ToDoModel> taskList;
     private FloatingActionButton floatingActionButton;
     private FirebaseFirestore firestore;
-
+    private FirebaseAuth firebaseAuth;
     private Query query;
     private ListenerRegistration listenerRegistration;
 
@@ -54,6 +56,7 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         floatingActionButton = findViewById(R.id.floatingActionB);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +83,13 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
 
         //ultimo task in alto -> Descending
         //primo task in alto -> Ascending
-        query = firestore.collection("task").orderBy("time", Query.Direction.DESCENDING);
+        String collectionPath = firebaseAuth.getCurrentUser().getUid();
+        //AggregateQuery countTask = firestore.collection("task").count();
+
+        //problema se utente non ha nessun task
+
+        query = firestore.collection(collectionPath).orderBy("time", Query.Direction.DESCENDING);
+
         listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

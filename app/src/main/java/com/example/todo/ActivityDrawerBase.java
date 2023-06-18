@@ -68,6 +68,7 @@ public class ActivityDrawerBase extends AppCompatActivity implements NavigationV
             case R.id.log_out:
                 startActivity(new Intent(ActivityDrawerBase.this, LoginActivity.class));
                 overridePendingTransition(0,0);
+                finishAffinity(); //chiude app se provo a fare indietro
                 break;
         }
 

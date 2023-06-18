@@ -14,6 +14,7 @@ import com.example.todo.AddNewTask;
 import com.example.todo.MainActivity;
 import com.example.todo.R;
 import com.example.todo.model.ToDoModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private List<ToDoModel> toDoList;
     private MainActivity mainActivity;
     private FirebaseFirestore firestore;
+    private FirebaseAuth firebaseAuth;
 
 
     public ToDoAdapter(MainActivity mainActivity, List<ToDoModel> toDoList){
@@ -34,6 +36,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         View itemView = LayoutInflater.from(mainActivity)
                 .inflate(R.layout.task_layout,parent,false);
         firestore = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         return new ViewHolder(itemView);
     }
 
@@ -42,13 +45,15 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         ToDoModel item = toDoList.get(position);
         holder.checkBox.setText(item.getTask());
         holder.checkBox.setChecked(toBoolean(item.getStatus()));
+
+        String collectionPath = firebaseAuth.getCurrentUser().getUid();
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    firestore.collection("task").document(item.TaskId).update("status",1);
+                    firestore.collection(collectionPath).document(item.TaskId).update("status",1);
                 }else{
-                    firestore.collection("task").document(item.TaskId).update("status",0);
+                    firestore.collection(collectionPath).document(item.TaskId).update("status",0);
                 }
             }
         });
@@ -72,8 +77,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     public void deleteTask(int position){
+        String collectionPath = firebaseAuth.getCurrentUser().getUid();
         ToDoModel toDoModel = toDoList.get(position);
-        firestore.collection("task").document(toDoModel.TaskId).delete();
+        firestore.collection(collectionPath).document(toDoModel.TaskId).delete();
         toDoList.remove(position);
         notifyItemRemoved(position);
     }

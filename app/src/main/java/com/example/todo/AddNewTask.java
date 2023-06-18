@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,6 +41,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
     private FirebaseFirestore firestore;
     private Context context;
     private String id = "";
+    private FirebaseAuth firebaseAuth;
 
     public static AddNewTask newInstance(){
         return new AddNewTask();
@@ -67,6 +69,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         newTaskText = view.findViewById(R.id.newTaskText);
         newTaskSavedButton = view.findViewById(R.id.newTaskButton);
         firestore = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         boolean isUpdate = false;
         final Bundle bundle = getArguments();
@@ -114,9 +117,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
             public void onClick(View view) {
 
                 String task = newTaskText.getText().toString();
+                String collectionPath = firebaseAuth.getCurrentUser().getUid();
 
                 if(finalIsUpdate){
-                    firestore.collection("task").document(id).update("task", task);
+                    firestore.collection(collectionPath).document(id).update("task", task);
                     Toast.makeText(context,"Task updated", Toast.LENGTH_SHORT).show();
                 }else {
                     if (task.isEmpty()) {
@@ -127,7 +131,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                         taskMap.put("status", 0);
                         taskMap.put("time", FieldValue.serverTimestamp());
 
-                        firestore.collection("task").add(taskMap).
+                        firestore.collection(collectionPath).add(taskMap).
                                 addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentReference> task) {
