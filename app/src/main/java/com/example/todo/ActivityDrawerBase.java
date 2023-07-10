@@ -7,16 +7,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ActivityDrawerBase extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -61,12 +61,14 @@ public class ActivityDrawerBase extends AppCompatActivity implements NavigationV
                 startActivity(new Intent(ActivityDrawerBase.this, MainActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.your_list:
-                startActivity(new Intent(this, CustomFragmentActivity.class));
+            case R.id.settings:
+                startActivity(new Intent(this, SettingFragmentActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.log_out:
-                startActivity(new Intent(ActivityDrawerBase.this, LoginActivity.class));
+                Toast.makeText(this, "Log out successful", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 overridePendingTransition(0,0);
                 finishAffinity(); //chiude app se provo a fare indietro
                 break;

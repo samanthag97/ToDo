@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.todo.adapter.ToDoAdapter;
@@ -42,6 +43,7 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
     private FirebaseAuth firebaseAuth;
     private Query query;
     private ListenerRegistration listenerRegistration;
+    private static final String TAG="MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,25 +86,26 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
         //ultimo task in alto -> Descending
         //primo task in alto -> Ascending
         String collectionPath = firebaseAuth.getCurrentUser().getUid();
-        //AggregateQuery countTask = firestore.collection("task").count();
-
-        //problema se utente non ha nessun task
 
         query = firestore.collection(collectionPath).orderBy("time", Query.Direction.DESCENDING);
 
         listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                for(DocumentChange documentChange : value.getDocumentChanges()){
-                    if(documentChange.getType() == DocumentChange.Type.ADDED){
-                        String id = documentChange.getDocument().getId();
-                        ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
-                        taskList.add(toDoModel);
-                        toDoAdapter.notifyDataSetChanged();
-                    }
+                if (error!=null){
+                    Log.d(TAG,"Error:" + error.getMessage());
                 }
-                listenerRegistration.remove();
-                //Collections.reverse(taskList);
+                else {
+                    for (DocumentChange documentChange : value.getDocumentChanges()) {
+                        if (documentChange.getType() == DocumentChange.Type.ADDED) {
+                            String id = documentChange.getDocument().getId();
+                            ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
+                            taskList.add(toDoModel);
+                            toDoAdapter.notifyDataSetChanged();
+                        }
+                    }
+                    listenerRegistration.remove();
+                }
             }
         });
 

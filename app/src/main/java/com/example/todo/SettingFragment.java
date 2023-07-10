@@ -2,18 +2,19 @@ package com.example.todo;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.todo.databinding.FragmentCustomBinding;
+public class SettingFragment extends Fragment {
 
-public class CustomFragment extends Fragment {
-
-    public CustomFragment() {
+    public SettingFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +27,12 @@ public class CustomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_custom, container, false);
+        return inflater.inflate(R.layout.fragment_setting, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
 }

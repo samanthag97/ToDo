@@ -4,8 +4,8 @@
     <item android:id="@+id/homepage"
         android:title="@string/homepage" />
 
-    <item android:id="@+id/your_list"
-        android:title="@string/your_list" />
+    <item android:id="@+id/settings"
+        android:title="@string/settings" />
 
     <item android:id="@+id/log_out"
         android:title="@string/log_out" />

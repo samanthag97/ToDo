@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_custom"
-    tools:context=".CustomFragment">
+    android:id="@+id/fragment_settings"
+    tools:context=".SettingFragment">
 
     <TextView
         android:id="@+id/fragment_text"

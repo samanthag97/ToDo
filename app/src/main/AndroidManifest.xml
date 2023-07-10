@@ -33,7 +33,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".CustomFragmentActivity"
+            android:name=".SettingFragmentActivity"
             android:exported="false" />
     </application>
 
