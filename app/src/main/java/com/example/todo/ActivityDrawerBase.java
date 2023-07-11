@@ -68,7 +68,7 @@ public class ActivityDrawerBase extends AppCompatActivity implements NavigationV
             case R.id.log_out:
                 Toast.makeText(this, "Log out successful", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 overridePendingTransition(0,0);
                 finishAffinity(); //chiude app se provo a fare indietro
                 break;

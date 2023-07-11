@@ -16,11 +16,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.InputStream;
-
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText email1, email2, password_reg;
+    private EditText email, password_reg, password_repeat;
     private Button registration_button;
     private FirebaseAuth firebaseAuth;
 
@@ -29,9 +27,9 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        email1 = findViewById(R.id.email_registration1);
-        email2 = findViewById(R.id.email_registration2);
+        email = findViewById(R.id.email_registration);
         password_reg = findViewById(R.id.password_registration);
+        password_repeat = findViewById(R.id.repeat_password);
         registration_button = findViewById(R.id.registration_button);
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -46,25 +44,25 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void registerNewUser() {
 
-        String email, email_repeat, password;
-        email = email1.getText().toString();
-        email_repeat = email2.getText().toString();
-        password = password_reg.getText().toString();
+        String email_reg, password_register, password_rep;
+        email_reg = email.getText().toString();
+        password_register = password_reg.getText().toString();
+        password_rep = password_repeat.getText().toString();
 
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email_reg)) {
             Toast.makeText(getApplicationContext(),"Please enter email", Toast.LENGTH_LONG).show();
             return;
         }
-        if (TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password_register)) {
             Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_LONG).show();
             return;
         }
-        if(!email.equals(email_repeat)){
-            Toast.makeText(getApplicationContext(), "Email must be the same", Toast.LENGTH_LONG).show();
+        if(!password_rep.equals(password_register)){
+            Toast.makeText(getApplicationContext(), "Password must be the same", Toast.LENGTH_LONG).show();
             return;
         }
 
-        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email_reg,password_register).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){

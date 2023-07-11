@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import com.example.todo.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.AggregateQuery;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -72,7 +74,6 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
         taskList = new ArrayList<>();
         toDoAdapter = new ToDoAdapter(MainActivity.this, taskList);
 
-        //toDoAdapter.setTasks(taskList);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelper(toDoAdapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
@@ -110,6 +111,8 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
         });
 
     }
+
+
 
     @Override
     public void dialogClose(DialogInterface dialogInterface) {

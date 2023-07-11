@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         String isChecked = sharedPreferences.getString("remember", "");
-
+/*
         if(isChecked.equals("true")){
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+*/
 
     }
 
