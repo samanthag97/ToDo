@@ -17,4 +17,8 @@
     <string name="forgot_your_password_click_here">Forgot your password? Click here.</string>
     <string name="remember_password">Remember password</string>
     <string name="dark_theme_enable">Use dark theme</string>
+
+    <string name="english">English</string>
+    <string name="italiano">Italiano</string>
+
 </resources>

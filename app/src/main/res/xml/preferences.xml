@@ -11,4 +11,18 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="general_category"
+        android:title="General">
+
+        <ListPreference
+            android:dialogTitle="Select language"
+            android:key="language"
+            android:title="Language"
+            android:entries="@array/languages"
+            android:entryValues="@array/languages"/>
+
+    </PreferenceCategory>
+
+
 </androidx.preference.PreferenceScreen>

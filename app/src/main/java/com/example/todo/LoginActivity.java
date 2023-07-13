@@ -2,6 +2,7 @@ package com.example.todo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -63,8 +64,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-        String isChecked = sharedPreferences.getString("remember", "");
+        //SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        //String isChecked = sharedPreferences.getString("remember", "");
 /*
         if(isChecked.equals("true")){
             Intent intent = new Intent(this, MainActivity.class);
@@ -116,4 +117,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

@@ -2,12 +2,15 @@ package com.example.todo;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,6 +48,7 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
     private FirebaseAuth firebaseAuth;
     private Query query;
     private ListenerRegistration listenerRegistration;
+
     private static final String TAG="MainActivity";
 
     @Override
