@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">To Do</string>
+    <string name="homepage">Pagina iniziale</string>
+    <string name="log_out">Esci</string>
+    <string name="settings">Impostazioni</string>
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+    <string name="new_task">Nuova attività</string>
+    <string name="save_button">Salva</string>
+    <string name="password_login">Password</string>
+    <string name="enter_your_email">Inserisci la tua e-mail</string>
+    <string name="sign_in">Login</string>
+    <string name="sign_up">Registrazione</string>
+    <string name="repeat_password">Ripeti password</string>
+    <string name="new_user_register_here">Nuovo utente? Registrati qui!</string>
+    <string name="forgot_your_password_click_here">Password dimenticata? Clicca qui.</string>
+    <string name="remember_password">Ricorda password</string>
+    <string name="dark_theme_enable">Usa tema scuro</string>
+
+    <string name="english">English</string>
+    <string name="italiano">Italiano</string>
+    <string name="espanol">Espanol</string>
+
+    <string name="aspect">Aspetto</string>
+    <string name="general">Generale</string>
+    <string name="language">Lingua</string>
+
+</resources>

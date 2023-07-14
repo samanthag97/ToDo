@@ -2,7 +2,7 @@
 
     <PreferenceCategory
         android:key="aspect_category"
-        android:title="Aspect">
+        android:title="@string/aspect">
 
     <SwitchPreferenceCompat
         android:key="dark_theme"
@@ -13,12 +13,12 @@
 
     <PreferenceCategory
         android:key="general_category"
-        android:title="General">
+        android:title="@string/general">
 
         <ListPreference
             android:dialogTitle="Select language"
             android:key="language"
-            android:title="Language"
+            android:title="@string/language"
             android:entries="@array/languages"
             android:entryValues="@array/languages"/>
 

@@ -4,6 +4,7 @@
     <array name="languages">
         <item>@string/english</item>
         <item>@string/italiano</item>
+        <item>@string/espanol</item>
     </array>
 
 

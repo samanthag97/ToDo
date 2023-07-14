@@ -1,74 +1,50 @@
 package com.example.todo;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
+import java.util.Locale;
+
 public class ApplicationManagement extends android.app.Application {
 
-    private static ApplicationManagement applicationInstance;
-    private static SharedPreferences sharedPreferences;
+    private static final String KEY_DARK_THEME = "dark_theme";
+    private static final String KEY_LANGUAGE = "language";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        //applicationInstance = this;
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark = sharedPreferences.getBoolean("dark_theme", true);
+
+        //da aggiungere eccezione se è ==null
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean isDark = sharedPreferences.getBoolean(KEY_DARK_THEME, true);
+        String language = sharedPreferences.getString(KEY_LANGUAGE, "");
+
         if(isDark){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
+        if(language.equals("Italiano")){
+            Locale locale = new Locale("it");
+            Locale.setDefault(locale);
+            Configuration configuration = new Configuration();
+            configuration.setLocale(locale);
+            configuration.setLayoutDirection(locale);
+            getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().
+                    getResources().getDisplayMetrics());
+
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
+        }
+
     }
 
-    public static ApplicationManagement get() {
-        return applicationInstance;
-    }
 
-    /**
-     * Gets shared preferences.
-     *
-     * @return the shared preferences
-     */
-    public static SharedPreferences getSharedPreferences() {
-        if (sharedPreferences == null)
-            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationInstance);
-        return sharedPreferences;
-    }
-
-    //set methods
-    public static void setPreferences(String key, String value) {
-        getSharedPreferences().edit().putString(key, value).commit();
-    }
-
-    public static void setPreferences(String key, long value) {
-        getSharedPreferences().edit().putLong(key, value).commit();
-    }
-
-    public static void setPreferences(String key, int value) {
-        getSharedPreferences().edit().putInt(key, value).commit();
-    }
-
-    public static void setPreferencesBoolean(String key, boolean value) {
-        getSharedPreferences().edit().putBoolean(key, value).commit();
-    }
-
-    //get methods
-    public static String getPreferenceData(String key) {
-        return getSharedPreferences().getString(key, "");
-    }
-
-    public static int getPreferenceDataInt(String key) {
-        return getSharedPreferences().getInt(key, 0);
-    }
-
-    public static boolean getPreferenceDataBoolean(String key) {
-        return getSharedPreferences().getBoolean(key, false);
-    }
-
-    public static long getPreferenceDataLong(String interval) {
-        return getSharedPreferences().getLong(interval, 0);
-    }
 }

@@ -21,8 +21,8 @@
     <string name="italiano">Italiano</string>
     <string name="espanol">Espanol</string>
 
-    <string name="aspect">Aspect</string>
+    <string name="aspect">Aspecto</string>
     <string name="general">General</string>
-    <string name="language">Language</string>
+    <string name="language">Lengua</string>
 
 </resources>

@@ -41,7 +41,6 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
     ActivityMainBinding activityMainBinding;
     private RecyclerView recyclerView;
     private ToDoAdapter toDoAdapter;
-
     private List<ToDoModel> taskList;
     private FloatingActionButton floatingActionButton;
     private FirebaseFirestore firestore;
@@ -90,32 +89,38 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
 
         //ultimo task in alto -> Descending
         //primo task in alto -> Ascending
-        String collectionPath = firebaseAuth.getCurrentUser().getUid();
 
-        query = firestore.collection(collectionPath).orderBy("time", Query.Direction.DESCENDING);
 
-        listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error!=null){
-                    Log.d(TAG,"Error:" + error.getMessage());
-                }
-                else {
-                    for (DocumentChange documentChange : value.getDocumentChanges()) {
-                        if (documentChange.getType() == DocumentChange.Type.ADDED) {
-                            String id = documentChange.getDocument().getId();
-                            ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
-                            taskList.add(toDoModel);
-                            toDoAdapter.notifyDataSetChanged();
+        if(firebaseAuth.getCurrentUser() == null){
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+        }
+        else {
+            String collectionPath = firebaseAuth.getCurrentUser().getUid();
+            query = firestore.collection(collectionPath).orderBy("time", Query.Direction.DESCENDING);
+
+            listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                    if (error != null) {
+                        Log.d(TAG, "Error:" + error.getMessage());
+                    } else {
+                        for (DocumentChange documentChange : value.getDocumentChanges()) {
+                            if (documentChange.getType() == DocumentChange.Type.ADDED) {
+                                String id = documentChange.getDocument().getId();
+                                ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
+                                taskList.add(toDoModel);
+                                toDoAdapter.notifyDataSetChanged();
+                            }
                         }
+                        listenerRegistration.remove();
                     }
-                    listenerRegistration.remove();
                 }
-            }
-        });
+            });
+
+        }
 
     }
-
 
 
     @Override
