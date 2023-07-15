@@ -11,10 +11,15 @@ import android.view.WindowManager;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private final static String REMEMBER_CHECKBOX = "remember password";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean isChecked = sharedPreferences.getBoolean(REMEMBER_CHECKBOX, true);
 
         Thread thread = new Thread(){
             public void run(){
@@ -25,7 +30,12 @@ public class SplashActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 finally{
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    Intent intent;
+                    if(isChecked){
+                        intent = new Intent(SplashActivity.this, MainActivity.class);
+                    }else {
+                        intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    }
                     startActivity(intent);
                     finish();
                 }

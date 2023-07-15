@@ -14,10 +14,9 @@ public class ApplicationManagement extends android.app.Application {
 
     private static final String KEY_DARK_THEME = "dark_theme";
     private static final String KEY_LANGUAGE = "language";
-
     @Override
     public void onCreate() {
-        super.onCreate();
+
 
         //da aggiungere eccezione se è ==null
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -30,6 +29,8 @@ public class ApplicationManagement extends android.app.Application {
         }else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
+        super.onCreate();
 
         if(language.equals("Italiano")){
             Locale locale = new Locale("it");

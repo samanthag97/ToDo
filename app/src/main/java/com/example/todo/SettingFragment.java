@@ -50,6 +50,9 @@ public class SettingFragment extends PreferenceFragmentCompat {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putBoolean(KEY_DARK_THEME,false).apply();
                 }
+                //setLocale(currentLanguage);
+                getActivity().recreate();
+
                 return true;
             }
         });
@@ -62,22 +65,28 @@ public class SettingFragment extends PreferenceFragmentCompat {
                 String language = (String) languageObject;
 
                 if(language.equals("Italiano")){
-                    setLocale("it");
+
                     editor.putString(KEY_LANGUAGE, "Italiano").apply();
-                } else if (language.equals("Espanol")){
-                    setLocale("es");
-                    editor.putString(KEY_LANGUAGE, "Espanol").apply();
                 }else{
-                    setLocale("en");
+                    //setLocale(language);
                     editor.putString(KEY_LANGUAGE, "English").apply();
                 }
+                setLocale(language);
                 return true;
             }
         });
 
     }
 
-    private void setLocale(String language) {
+    private void setLocale(String currentLanguage) {
+
+        String language = "";
+        if(currentLanguage.equals("Italiano")){
+            language = "it";
+        } else {
+            language = "en";
+        }
+
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();

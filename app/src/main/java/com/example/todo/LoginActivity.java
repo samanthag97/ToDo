@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private CheckBox rememberCheckbox;
 
+    private final static String REMEMBER_CHECKBOX = "remember password";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,27 +66,24 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-        //String isChecked = sharedPreferences.getString("remember", "");
-/*
-        if(isChecked.equals("true")){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean isChecked = sharedPreferences.getBoolean(REMEMBER_CHECKBOX, true);
 
+/*            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }*/
 
         rememberCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(compoundButton.isChecked()){
-                    SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("remember", "true");
+                    editor.putBoolean(REMEMBER_CHECKBOX, true);
                     editor.apply();
                 }
             }
         });
-*/
+
 
     }
 

@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import com.example.todo.databinding.ActivitySettingsBinding;
@@ -15,6 +16,7 @@ import java.util.Locale;
 public class SettingsActivity extends ActivityDrawerBase {
 
     ActivitySettingsBinding activitySettingsBinding;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class SettingsActivity extends ActivityDrawerBase {
                 add(activitySettingsBinding.FrameLayoutSettings.getId(), settingFragment).commit();
 
     }
+
+
+
 
 
 
