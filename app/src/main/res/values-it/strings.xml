@@ -23,5 +23,6 @@
     <string name="aspect">Aspetto</string>
     <string name="general">Generale</string>
     <string name="language">Lingua</string>
+    <string name="select_language">Seleziona lingua</string>
 
 </resources>

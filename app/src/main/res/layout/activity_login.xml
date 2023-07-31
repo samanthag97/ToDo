@@ -21,17 +21,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:boxBackgroundMode="none"
+        android:id="@+id/password_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_login">
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/password_login"
         android:inputType="textPassword"
-        android:selectAllOnFocus="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email_login"/>
+        android:selectAllOnFocus="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <CheckBox
         android:layout_width="0dp"
@@ -41,7 +51,7 @@
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_login" />
+        app:layout_constraintTop_toBottomOf="@id/password_container" />
 
 
 
