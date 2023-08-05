@@ -2,12 +2,19 @@
 
     <PreferenceCategory
         android:key="aspect_category"
-        android:title="@string/aspect">
+        android:title="@string/account">
 
-    <SwitchPreferenceCompat
-        android:key="dark_theme"
-        android:title="@string/dark_theme_enable"
-        android:defaultValue="false"/>
+        <Preference
+            android:title="Delete data"
+            android:key="delete_data"
+            android:summary="Delete all your data from the database"
+            android:icon="@drawable/baseline_delete_24"/>
+
+        <Preference
+            android:title="Delete account"
+            android:icon="@drawable/baseline_person_off_24"
+            android:key="delete_account"
+            android:summary="Delete your account permanently"/>
 
     </PreferenceCategory>
 

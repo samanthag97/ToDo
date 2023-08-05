@@ -2,8 +2,10 @@ package com.example.todo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,9 +35,13 @@ public class RegistrationActivity extends AppCompatActivity {
         registration_button = findViewById(R.id.registration_button);
         firebaseAuth = FirebaseAuth.getInstance();
 
+
+
         registration_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                sharedPreferences.edit().clear().apply();
                 registerNewUser();
             }
         });

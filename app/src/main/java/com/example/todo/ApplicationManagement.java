@@ -19,12 +19,7 @@ public class ApplicationManagement extends android.app.Application {
     private static final String KEY_DARK_THEME = "dark_theme";
 
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-    }
-
-    @Override
+   /* @Override
     public void onCreate() {
 
         //da aggiungere eccezione se è sharedpref==null
@@ -41,7 +36,7 @@ public class ApplicationManagement extends android.app.Application {
 
         super.onCreate();
 
-    }
+    }*/
 
 
 }

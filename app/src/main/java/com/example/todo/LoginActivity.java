@@ -1,6 +1,7 @@
 package com.example.todo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
@@ -62,28 +63,51 @@ public class LoginActivity extends AppCompatActivity {
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText resetMail = new EditText(view.getContext());
+                AlertDialog.Builder dialogReset = new AlertDialog.Builder(view.getContext());
+                //dialogReset.setTitle("Reset password");
+                dialogReset.setMessage("Enter your email to reset password");
+                dialogReset.setView(resetMail);
 
+                dialogReset.setPositiveButton("Send link",(dialogInterface, i) ->
+                        forgotPassword(resetMail.getText().toString()) );
+                dialogReset.setNegativeButton("Cancel", (dialogInterface, i) -> {
+
+                });
+                dialogReset.show();
             }
         });
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean isChecked = sharedPreferences.getBoolean(REMEMBER_CHECKBOX, true);
-
-/*            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }*/
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         rememberCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(compoundButton.isChecked()){
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean(REMEMBER_CHECKBOX, true);
+                    editor.apply();
+                }else {
+                    editor.putBoolean(REMEMBER_CHECKBOX, false);
                     editor.apply();
                 }
             }
         });
 
+
+    }
+
+    private void forgotPassword(String email) {
+
+        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Email successfully sent!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Fail to send email", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
@@ -110,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Fail to login", Toast.LENGTH_SHORT).show();
                 }
             }
         });

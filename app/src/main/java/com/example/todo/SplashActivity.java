@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean isChecked = sharedPreferences.getBoolean(REMEMBER_CHECKBOX, true);
+        Boolean isChecked = sharedPreferences.getBoolean(REMEMBER_CHECKBOX, false);
 
         Thread thread = new Thread(){
             public void run(){
