@@ -70,6 +70,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
                 public void onComplete(@NonNull Task<Void> task) {
 
                     if(task.isSuccessful()) {
+                        deleteData();
                         firebaseAuth.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
