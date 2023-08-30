@@ -120,10 +120,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
                 if(finalIsUpdate){
                     firestore.collection(collectionPath).document(id).update("task", task);
-                    Toast.makeText(context,"Task updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.task_updated, Toast.LENGTH_SHORT).show();
                 }else {
                     if (task.isEmpty()) {
-                        Toast.makeText(context, "Insert some text.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.insert_text, Toast.LENGTH_SHORT).show();
                     } else {
                         Map<String, Object> taskMap = new HashMap<>();
                         taskMap.put("task", task);
@@ -135,7 +135,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentReference> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(context, "Task saved.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, R.string.task_saved, Toast.LENGTH_SHORT).show();
                                         } else {
                                             Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         }

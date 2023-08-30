@@ -33,13 +33,13 @@ public class TouchHelper extends ItemTouchHelper.SimpleCallback {
         if(direction == ItemTouchHelper.RIGHT){
             //delete
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
-            builder.setMessage("Are you sure?").setTitle("Delete Task")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setMessage(R.string.proceed).setTitle(R.string.delete_task)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             adapter.deleteTask(position);
                         }
-                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             adapter.notifyItemChanged(position);

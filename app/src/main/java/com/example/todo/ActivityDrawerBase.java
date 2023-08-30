@@ -64,7 +64,7 @@ public class ActivityDrawerBase extends AppCompatActivity implements NavigationV
                 overridePendingTransition(0,0);
                 break;
             case R.id.log_out:
-                Toast.makeText(this, "Log out successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.log_out_successful, Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, LoginActivity.class));
                 overridePendingTransition(0,0);

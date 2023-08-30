@@ -66,12 +66,12 @@ public class LoginActivity extends AppCompatActivity {
                 EditText resetMail = new EditText(view.getContext());
                 AlertDialog.Builder dialogReset = new AlertDialog.Builder(view.getContext());
                 //dialogReset.setTitle("Reset password");
-                dialogReset.setMessage("Enter your email to reset password");
+                dialogReset.setMessage(R.string.reset_password_string);
                 dialogReset.setView(resetMail);
 
-                dialogReset.setPositiveButton("Send link",(dialogInterface, i) ->
+                dialogReset.setPositiveButton(R.string.send_link,(dialogInterface, i) ->
                         forgotPassword(resetMail.getText().toString()) );
-                dialogReset.setNegativeButton("Cancel", (dialogInterface, i) -> {
+                dialogReset.setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
 
                 });
                 dialogReset.show();
@@ -102,9 +102,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Email successfully sent!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.email_sent_string, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Fail to send email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.email_not_sent, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -118,11 +118,11 @@ public class LoginActivity extends AppCompatActivity {
         password_log = password.getText().toString();
 
         if (TextUtils.isEmpty(email_log)) {
-            Toast.makeText(getApplicationContext(),"Please enter email", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.pls_enter_mail, Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(password_log)) {
-            Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.pls_enter_psw, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -130,11 +130,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.login_successful, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getApplicationContext(), "Fail to login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.login_fail, Toast.LENGTH_SHORT).show();
                 }
             }
         });

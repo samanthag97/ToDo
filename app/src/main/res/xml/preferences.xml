@@ -1,20 +1,31 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
+        android:key="@string/general"
+        android:title="@string/general">
+
+        <ListPreference
+            android:key="language"
+            android:title="@string/select_language"
+            android:entries="@array/languages"
+            android:entryValues="@array/languages"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="aspect_category"
         android:title="@string/account">
 
         <Preference
-            android:title="Delete data"
+            android:title="@string/delete_data"
             android:key="delete_data"
-            android:summary="Delete all your data from the database"
+            android:summary="@string/delete_data_summary"
             android:icon="@drawable/baseline_delete_24"/>
 
         <Preference
-            android:title="Delete account"
+            android:title="@string/delete_account"
             android:icon="@drawable/baseline_person_off_24"
             android:key="delete_account"
-            android:summary="Delete your account permanently"/>
+            android:summary="@string/delete_account_summary"/>
 
     </PreferenceCategory>
 

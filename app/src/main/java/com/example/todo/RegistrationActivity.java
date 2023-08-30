@@ -56,15 +56,19 @@ public class RegistrationActivity extends AppCompatActivity {
         password_rep = password_repeat.getText().toString();
 
         if (TextUtils.isEmpty(email_reg)) {
-            Toast.makeText(getApplicationContext(),"Please enter email", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),R.string.pls_enter_mail, Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(password_register)) {
-            Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.pls_enter_psw, Toast.LENGTH_LONG).show();
             return;
         }
         if(!password_rep.equals(password_register)){
-            Toast.makeText(getApplicationContext(), "Password must be the same", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.check_same_psw, Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(password_register.length()<6){
+            Toast.makeText(getApplicationContext(), R.string.psw_6_char, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -72,11 +76,11 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Registration successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.reg_success, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getApplicationContext(), "Registration failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.reg_fail, Toast.LENGTH_SHORT).show();
                 }
             }
         });
