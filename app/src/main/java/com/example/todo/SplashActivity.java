@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -37,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
                         intent = new Intent(SplashActivity.this, LoginActivity.class);
                     }
                     startActivity(intent);
-                    finish();
+                    finishAffinity();
                 }
             }
         };

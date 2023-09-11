@@ -93,17 +93,13 @@ public class MainActivity extends ActivityDrawerBase implements DialogCloseListe
     }
 
     private void showData() {
-
-        //ultimo task in alto -> Descending
-        //primo task in alto -> Ascending
-
         if(firebaseAuth.getCurrentUser() == null){
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
         }
         else {
             String collectionPath = firebaseAuth.getCurrentUser().getUid();
-            query = firestore.collection(collectionPath).orderBy("time", Query.Direction.DESCENDING);
+            query = firestore.collection(collectionPath).orderBy("time", Query.Direction.ASCENDING);
 
             listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override

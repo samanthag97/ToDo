@@ -159,7 +159,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
                     getString(R.string.proceed));
         } else if (title.equals(getString(R.string.delete_account))) {
             alertDialog.setMessage(getString(R.string.alert_delete_account) + "\n" +
-                    R.string.proceed);
+                    getString(R.string.proceed));
         }
         alertDialog.setPositiveButton(R.string.yes,(dialogInterface, i) ->{
 
