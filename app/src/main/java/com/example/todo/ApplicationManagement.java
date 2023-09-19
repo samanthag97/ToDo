@@ -27,21 +27,20 @@ public class ApplicationManagement extends android.app.Application {
     }
 
     public void setLanguage(String language){
-       String lan="";
+        Locale locale;
         if(language.equals("Italiano")) {
-            lan = "it";
+            locale = new Locale("it");
         }else{
-            lan = "en";
+            locale = new Locale("en");
         }
-        Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.setLocale(locale);
         configuration.setLayoutDirection(locale);
         getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().
                 getResources().getDisplayMetrics());
-        //Intent intent = new Intent(this, SplashActivity.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //startActivity(intent);
+        Intent intent = new Intent(this, SplashActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         }
     }
