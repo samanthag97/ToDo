@@ -68,7 +68,7 @@ public class ActivityDrawerBase extends AppCompatActivity implements NavigationV
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, LoginActivity.class));
                 overridePendingTransition(0,0);
-                finishAffinity(); //chiude app se provo a fare indietro
+                finishAffinity();
                 break;
         }
 
